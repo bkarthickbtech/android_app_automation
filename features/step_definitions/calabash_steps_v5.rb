@@ -1,0 +1,996 @@
+# encoding: UTF-8
+# coding: UTF-8
+# -*- coding: UTF-8 -*-
+
+require 'calabash-android/calabash_steps'
+
+#LANGUAGE SPECIFIC METHODS
+#LANGUAGE SPECIFIC METHODS
+#LANGUAGE SPECIFIC METHODS
+#LANGUAGE SPECIFIC METHODS
+
+#CAN BE EASILY ALTERED
+#CAN BE EASILY ALTERED
+
+Then /^I choose billing province as "([^\"]*)"$/ do |province|
+	#Clicks field
+	query("webview css:'*' id:'BillingAddressForm_fk_customer_address_region'").first
+	touch("webview css:'*' id:'BillingAddressForm_fk_customer_address_region'")
+	performAction('wait',1)
+	#Waits for list of places to appear. For Samsung, it is webselect_dialog_listview.
+	#For Nexus, it is select_dialog_listview
+	wait_for(:timeout => 30) do 
+		while element_does_not_exist("* id:'webselect_dialog_listview'") && element_does_not_exist("* id:'select_dialog_listview'")
+			touch("webview css:'*' id:'BillingAddressForm_fk_customer_address_region'")
+			performAction('wait',7)
+		end
+		res=true
+	end
+	#Scrolls down until the place is seen
+	while element_does_not_exist("* text:'"+province+"'") do
+		performAction('scroll_down')
+	end
+	#Clicks option
+	touch("* text:'"+province+"'")
+
+	#For nexus, option is selected after touching on it.
+	#For samsung, "done" button needs to be clicked
+
+	#ADD EXTRA LANGUAGES ACCORDINGLY
+
+	touch("* id:'WebSelectDone'")
+end
+
+#Refer to Then /^I choose billing province as "([^\"]*)"$/ for documentation
+Then /^I choose billing city as "([^\"]*)"$/ do |city|
+	query("webview css:'*' id:'BillingAddressForm_fk_customer_address_city'").first
+	touch("webview css:'*' id:'BillingAddressForm_fk_customer_address_city'")
+	performAction('wait',1)
+	wait_for(:timeout => 30) do 
+		while element_does_not_exist("* id:'webselect_dialog_listview'") && element_does_not_exist("* id:'select_dialog_listview'")
+			touch("webview css:'*' id:'BillingAddressForm_fk_customer_address_city'")
+			performAction('wait',3)
+		end
+		res=true
+	end
+	while element_does_not_exist("* text:'"+city+"'") do
+		performAction('scroll_down')
+	end
+	touch("* text:'"+city+"'")
+
+	#ADD EXTRA LANGUAGES ACCORDINGLY
+
+          touch("* id:'WebSelectDone'")
+
+end
+
+#Refer to Then /^I choose billing province as "([^\"]*)"$/ for documentation
+Then /^I choose billing ward as "([^\"]*)"$/ do |ward|
+	query("webview css:'*' id:'BillingAddressForm_ward'").first
+	touch("webview css:'*' id:'BillingAddressForm_ward'")
+	performAction('wait',1)
+	wait_for(:timeout => 30) do 
+		while element_does_not_exist("* id:'webselect_dialog_listview'") && element_does_not_exist("* id:'select_dialog_listview'")
+			touch("webview css:'*' id:'BillingAddressForm_ward'")
+			performAction('wait',3)
+		end
+		res=true
+	end
+	while element_does_not_exist("* text:'"+ward+"'") do
+		performAction('scroll_down')
+	end
+	touch("* text:'"+ward+"'")
+
+	#ADD EXTRA LANGUAGES ACCORDINGLY
+
+       touch("* id:'WebSelectDone'")
+
+end
+
+#Refer to Then /^I choose billing province as "([^\"]*)"$/ for documentation
+Then /^I choose shipping province as "([^\"]*)"$/ do |province|
+	query("webview css:'*' id:'ShippingAddressForm_fk_customer_address_region'").first
+	touch("webview css:'*' id:'ShippingAddressForm_fk_customer_address_region'")
+	performAction('wait',1)
+	wait_for(:timeout => 30) do 
+		while element_does_not_exist("* id:'webselect_dialog_listview'") && element_does_not_exist("* id:'select_dialog_listview'")
+			touch("webview css:'*' id:'ShippingAddressForm_fk_customer_address_region'")
+			performAction('wait',3)
+		end
+		res = true
+	end
+	while element_does_not_exist("* text:'"+province+"'") do
+		performAction('scroll_down')
+	end
+	touch("* text:'"+province+"'")
+
+	#ADD EXTRA LANGUAGES ACCORDINGLY
+
+	touch("* id:'WebSelectDone'")
+end
+
+#Refer to Then /^I choose billing province as "([^\"]*)"$/ for documentation
+Then /^I choose shipping city as "([^\"]*)"$/ do |city|
+	query("webview css:'*' id:'ShippingAddressForm_fk_customer_address_city'").first
+	touch("webview css:'*' id:'ShippingAddressForm_fk_customer_address_city'")
+	performAction('wait',1)
+	wait_for(:timeout => 30) do 
+		while element_does_not_exist("* id:'webselect_dialog_listview'") && element_does_not_exist("* id:'select_dialog_listview'")
+			touch("webview css:'*' id:'ShippingAddressForm_fk_customer_address_city'")
+			performAction('wait',3)
+		end
+		res=true
+	end
+	while element_does_not_exist("* text:'"+city+"'") do
+		performAction('scroll_down')
+	end
+	touch("* text:'"+city+"'")
+
+	#ADD EXTRA LANGUAGES ACCORDINGLY
+
+       touch("* id:'WebSelectDone'")
+
+end
+
+#Refer to Then /^I choose billing province as "([^\"]*)"$/ for documentation
+Then /^I choose shipping ward as "([^\"]*)"$/ do |ward|
+	query("webview css:'*' id:'ShippingAddressForm_ward'").first
+	touch("webview css:'*' id:'ShippingAddressForm_ward'")
+	performAction('wait',1)
+	wait_for(:timeout => 30) do 
+		while element_does_not_exist("* id:'webselect_dialog_listview'") && element_does_not_exist("* id:'select_dialog_listview'")
+			touch("webview css:'*' id:'ShippingAddressForm_ward'")
+			performAction('wait',3)
+		end
+		res=true
+	end
+	while element_does_not_exist("* text:'"+ward+"'") do
+		performAction('scroll_down')
+	end
+	touch("* text:'"+ward+"'")
+
+	#ADD EXTRA LANGUAGES ACCORDINGLY
+
+	touch("* id:'WebSelectDone'")
+end
+
+And /^I submit the date$/ do
+	performAction('wait',2)
+
+	#ADD EXTRA LANGUAGES ACCORDINGLY
+
+	#Samsung Devices
+	if element_exists("button text:'Set'")
+		touch("button text:'Set'")
+	elsif element_exists("button text:'Tetap'")
+		touch("button text:'Tetap'")
+	elsif element_exists("button text:'Chọn'")
+		touch("button text:'Chọn'")
+	elsif element_exists("button text:'กำหนด'")
+		touch("button text:'กำหนด'")
+	#Nexus Devices
+	elsif element_exists("button text:'Done'")
+		touch("button text:'Done'")
+	elsif element_exists("button text:'Tapos na'")
+		touch("button text:'Tapos na'")
+	elsif element_exists("button text:'Selesai'")
+		touch("button text:'Selesai'")	
+	elsif element_exists("button text:'Xong'")
+		touch("button text:'Xong'")
+	elsif element_exists("button text:'เสร็จสิ้น'")
+		touch("button text:'เสร็จสิ้น'")
+	end
+	performAction('wait',2)
+end
+
+#HAVE TO USE ARGUMENTS
+#HAVE TO USE ARGUMENTS
+
+And /^I ensure that no account is logged in for "([^\"]*)"$/ do |language|
+	performAction('click_on_view_by_id','sideMenuButton')
+	performAction('wait',2)
+
+	case language
+
+		when "en"
+			#Checks if "Logout" exists. If it doesn't exist, no account is logged in.
+			#If it exists, an account it logged in
+			if element_exists("* text:'Logout'")
+				touch("* text:'Logout'")
+				performAction('wait_for_text', 'Logout Confirmation', 30)
+				touch("* text:'Yes'")
+				performAction('wait', 2)
+				wait_for(:timeout => 60) { element_does_not_exist("LinearLayout id:'loading_bar'") }
+				if element_exists("* text:'Retry'")
+					touch("* text:Retry")
+				end
+				wait_for(:timeout => 30) { element_exists("* id:'imgTop'") }
+			else
+				performAction('go_back')
+			end
+
+		when "id"
+			if element_exists("* text:'Logout'")
+				touch("* text:'Logout'")
+				performAction('wait_for_text', 'Konfirmasi Logout', 30)
+				touch("* text:'Ya'")
+				performAction('wait', 2)
+				wait_for(:timeout => 60) { element_does_not_exist("LinearLayout id:'loading_bar'") }
+				if element_exists("* text:'Retry'")
+					touch("* text:Retry")
+				end
+				wait_for(:timeout => 30) { element_exists("* id:'imgTop'") }
+			else
+				performAction('go_back')
+			end
+
+		when "vn"
+			if element_exists("* text:'Đăng xuất'")
+				touch("* text:'Đăng xuất'")
+				performAction('wait_for_text', 'Bạn thật sự muốn đăng xuất?', 30)
+				touch("* text:'Có'")
+				performAction('wait', 2)
+				wait_for(:timeout => 60) { element_does_not_exist("LinearLayout id:'loading_bar'") }
+				if element_exists("* text:'Retry'")
+					touch("* text:Retry")
+				end
+				wait_for(:timeout => 30) { element_exists("* id:'imgTop'") }
+			else
+				performAction('go_back')
+			end
+
+		when "th"
+			if element_exists("* text:'ออกจากระบบ'")
+				touch("* text:'ออกจากระบบ'")
+				performAction('wait_for_text', 'คุณแน่ใจหรือว่าต้องการออกจากระบบ?', 30)
+				touch("* text:'ใช่'")
+				performAction('wait', 2)
+				wait_for(:timeout => 60) { element_does_not_exist("LinearLayout id:'loading_bar'") }
+				if element_exists("* text:'Retry'")
+					touch("* text:Retry")
+				end
+				wait_for(:timeout => 30) { element_exists("* id:'imgTop'") }
+			else
+				performAction('go_back')
+			end
+	end
+end
+
+
+And /^I add a random product to cart for "([^\"]*)"$/ do |language|
+
+
+check = nil
+
+while (check !='no') 
+
+if check == 'yes'
+performAction('go_back')
+performAction('go_back')
+end
+
+while element_exists("* id:'name'") 
+      touch("* id:'header'")
+      performAction('wait',3)
+end
+	#Waits for categories to appear
+	wait_for(:timeout => 30) { element_exists("* id:'header'") }
+	#Gets a random number based on number of categories
+	header_item = rand(query("* id:'header'").length-2)
+	#Touches category based on random number
+	touch("* id:'header' index:"+header_item.to_s+"")
+	#Waits for sub categories to appear
+	wait_for(:timeout => 30) { element_exists("* id:'name'") }
+	#Gets a random number based on number of sub categories
+	name_item = rand(query("* id:'name'").length-2)
+	#Touches sub category based on random number
+	touch("* id:'name' index:"+name_item.to_s+"")
+	#Waits for list of items to appear
+	wait_for(:timeout => 30) { element_exists("* id:'item_regprice'") }
+	#Gets a random number based on number of products
+	product_item = rand(query("* id:'item_name'").length)
+	#Touches product based on random number
+	performAction('press_list_item', product_item.to_s, 0)
+	#Waits for PDV
+	wait_for(:timeout => 30) { element_exists("* id:'estimatedDelivery'") }
+
+
+
+performAction('scroll_down')
+
+
+file = query("TextView id:'description'", :text)
+last =file[0].to_s
+puts last
+
+   if last =~ /Non-sale item/
+       check = 'yes'
+ 
+   elsif last =~ /ข้อยกเว้น/
+       check = 'yes'
+
+   else
+       check = 'no'
+   end
+
+end 
+
+
+
+performAction('scroll_up')
+
+
+case language
+
+   
+
+		when "en"
+			#Touches add to cart button
+			touch("button text:'Add to Cart'")
+			#If "Please select a size to see shipping details" exists, a size needs to be selected
+			if element_exists("TextView text:'Please select a size to see shipping details'")
+				i=1
+				while true do
+					#Touches next biggest size
+					touch("textView id:'text' index:"+i.to_s+"")
+					#Attempts to add to cart
+					touch("button text:'Add to Cart'")
+					performAction('wait',3)
+					#Checks if product was added to cart (Some products are out of stock for
+					#only some sizes)
+					if element_exists("TextView id:'header_cart_quantity' text:'0'")
+						i=i+1
+					else
+						break
+					end
+				end
+			end
+
+		when "id"
+			touch("button text:'Tambah ke Troli'")
+			if element_exists("TextView text:'Pilih ukuran dan lanjut ke transaksi'")
+				i=1
+				while true do
+					touch("textView id:'text' index:"+i.to_s+"")
+					touch("button text:'Tambah ke Troli'")
+					performAction('wait',3)
+					if element_exists("TextView id:'header_cart_quantity' text:'0'")
+						i=i+1
+					else
+						break
+					end
+				end
+			end
+
+		when "vn"
+			touch("button text:'Thêm vào giỏ hàng'")
+			if element_exists("TextView text:'Xin lựa chọn size để xem thông tin vận chuyển'")
+				i=1
+				while true do
+					touch("textView id:'text' index:"+i.to_s+"")
+					touch("button text:'Thêm vào giỏ hàng'")
+					performAction('wait',3)
+					if element_exists("TextView id:'header_cart_quantity' text:'0'")
+						i=i+1
+					else
+						break
+					end
+				end
+			end
+
+		when "th"
+			touch("button text:'ใส่ในรถเข็น'")
+			if element_exists("TextView text:'โปรดคลิกเลือกไซส์ เพื่อดูรายละเอียดการจัดส่งสินค้า'")
+				i=1
+				while true do
+					touch("textView id:'text' index:"+i.to_s+"")
+					touch("button text:'ใส่ในรถเข็น'")
+					performAction('wait',3)
+					if element_exists("TextView id:'header_cart_quantity' text:'0'")
+						i=i+1
+					else
+						break
+			            	end
+			       end
+	               end
+            end
+
+end
+
+
+And /^I ensure that the cart is empty for "([^\"]*)"$/ do |language|
+	performAction('wait',3)
+	wait_for(:timeout => 30) { element_exists("* id:'rightContainer'") }
+	#Gets quantity of cart
+	quantity = query("TextView id:'header_cart_quantity'", :text).first
+	if quantity.to_i > 0
+
+		case language
+
+			when "en"	
+				#Opens cart
+				touch("* id:'rightContainer'")
+				wait_for(:timeout => 30) { element_exists("* text:'SHOPPING CART'") }
+				#If "YOUR SHOPPING CART IS EMPTY!" is not there, means there are products in the cart
+				while element_does_not_exist("TextView text:'YOUR SHOPPING CART IS EMPTY!'") do
+					#Deletes item
+					touch("* text:'Delete'")
+					wait_for(:timeout => 30) { element_exists("* text:'Remove Item'") }
+					touch("* text:'Yes'")
+					performAction('wait',5)
+					#If "YOUR SHOPPING CART IS EMPTY!" does not exist, there are multiple items in the cart
+					#Deletes the next item
+				end
+				performAction('go_back')
+
+			when "id"	
+				touch("* id:'rightContainer'")
+				wait_for(:timeout => 30) { element_exists("* text:'TROLI BELANJA'") }
+				while element_does_not_exist("TextView text:'TIDAK ADA BARANG DI TROLI'") do
+					touch("* text:'Hapus'")
+					wait_for(:timeout => 30) { element_exists("* text:'Hapus Barang'") }
+					touch("* text:'Ya'")
+					performAction('wait',5)
+				end
+				performAction('go_back')
+
+			when "vn"	
+				touch("* id:'rightContainer'")
+				wait_for(:timeout => 30) { element_exists("* text:'GIỎ HÀNG'") }
+				while element_does_not_exist("TextView text:'RẤT TIẾC!'") do
+					touch("* text:'Xóa'")
+					wait_for(:timeout => 30) { element_exists("* text:'Bỏ sản phẩm'") }
+					touch("* text:'Có'")
+					performAction('wait',5)
+				end
+				performAction('go_back')	
+
+			when "th"	
+				touch("* id:'rightContainer'")
+				wait_for(:timeout => 30) { element_exists("* text:'รถเข็น'") }
+				while element_does_not_exist("TextView text:'โอ้ ! ไม่นะ !'") do
+					touch("* text:'ลบ'")
+					wait_for(:timeout => 30) { element_exists("* text:'ลบสินค้า'") }
+					touch("* text:'ใช่'")
+					performAction('wait',5)
+				end
+				performAction('go_back')	
+		end
+	end
+end
+
+#NON-LANGUAGE SPECIFIC METHODS
+#NON-LANGUAGE SPECIFIC METHODS
+#NON-LANGUAGE SPECIFIC METHODS
+#NON-LANGUAGE SPECIFIC METHODS
+
+#WEBVIEW GENERAL METHODS
+#WEBVIEW GENERAL METHODS
+
+#Webview click without verification
+Given /^In webview I click "([^\"]+)" once$/ do |arg1|
+	query("webview css:'"+arg1+"'").first
+	touch("webView css:'"+arg1+"'")
+end
+
+#Payment option select without verification
+Given /^I check on "([^\"]+)" once$/ do |arg1| 
+	query("webView css:'#"+arg1+"'").first
+	touch("webView css:'#"+arg1+"'")
+end
+
+#Webview click with verification
+Given /^In webview I click "([^\"]+)"$/ do |arg1|
+	#Takes length of array of current webview elements
+	initial = query("webview css:'*'").length
+	count = 0
+	begin
+		count=count+1
+		#Clicks the button
+		if element_exists("webview css:'"+arg1+"'")
+			query("webview css:'"+arg1+"'").first
+			touch("webView css:'"+arg1+"'")
+		else
+			break
+		end
+		performAction('wait',2)
+		wait_for(:timeout => 120) { element_does_not_exist("LinearLayout id:'loading_bar'") }
+		performAction('wait',7)
+		#Takes length of array of current webview elements after clicking the button
+		final = query("webview css:'*'").length
+		if count > 10
+			fail(msg="Empty Cart page")
+		end
+		#Compares the initial and current array lengths. If they are different, page has changed,
+		#therefore button has been clicked successfully. If they are the same, the page has not 
+		#changed and the loop will be called again.
+	end while final==initial && element_exists("webview css:'"+arg1+"'")
+end
+
+Then /^I touch the "([^\"]+)" text in webview$/ do |arg1|
+	query("webview css:'*' textContent:'"+arg1+"'").first
+	touch("webview css:'*' textContent:'"+arg1+"'")
+end
+
+#Checks if text exists in webview
+Given /^I verify the text "([^\"]+)"$/ do |arg1|
+	if element_exists("webview css:'h1' textContent:'"+arg1+"'") 
+		query("webview css:'button'")
+	end
+end
+
+#Checks if element exists in webview
+And /^I wait up to (\d+) seconds for "([^\"]+)" to appear in webview$/ do |timeout, arg1|
+	wait_for(:timeout => timeout.to_i) { element_exists("webview css:'"+arg1+"'") }
+	wait_for(:timeout => 120) { element_does_not_exist("LinearLayout id:'loading_bar'") }
+end
+
+#WEBVIEW CHECKOUT METHODS
+#WEBVIEW CHECKOUT METHODS
+
+
+#Payment option select with verification, with scroll
+Given /^I check on "([^\"]+)"$/ do |arg1| 
+	#Takes length of array of initial webview elements
+	initial = query("webview css:'*'").length
+	count = 0
+	begin
+		count = count + 1
+               
+		performAction('scroll_down')
+		performAction('scroll_down')
+       
+		performAction('wait',2)
+		#Checks the payment option
+		query("webView css:'#"+arg1+"'").first
+   		touch("webView css:'#"+arg1+"'")
+   		performAction('wait',2)
+   		#Attempts to go to the next page
+   		query("webView css:'button'").first
+   		touch("webView css:'button'")
+   		performAction('wait',2)
+		wait_for(:timeout => 120) { element_does_not_exist("LinearLayout id:'loading_bar'") }
+		performAction('wait',7)
+		#Takes length of array of current webview elements
+		final = query("webview css:'*'").length
+		if count > 10
+			fail(msg="Empty Cart page")
+		end
+		#Compares the initial and current array lengths. If they are different, page has changed,
+		#therefore payment page has been passed. If they are the same, the page has not 
+		#changed and the loop will be called again.
+	end while final==initial || element_does_not_exist("webview css:'h1' textContent:'Your Order'") 	
+end
+
+#Enters voucher, submits voucher, checks if voucher is validated
+Then /^I enter voucher code "([^\"]*)"$/ do |arg3|
+	#Checks if the coupon has been validated. Initially, webview element does not exist, therefore
+	#loop is called. If after one loop, something fails, the loop will run again since the element
+	#won't exist if something fails.
+	while element_does_not_exist("webview css:'*' class:'g50 coupon'")
+		performAction('scroll_down')
+		performAction('scroll_down')
+		performAction('wait', 2)
+		#Enters text into coupon text field
+		performAction('set_text', 'webView','input[id=coupon]',arg3)
+		#Sends the coupon
+		query("webView css:'#couponSend'").first
+  		touch("webView css:'#couponSend'")
+  		performAction('wait', 5)
+		wait_for(:timeout => 120) { element_does_not_exist("LinearLayout id:'loading_bar'") }
+		performAction('wait', 5)
+	end
+end
+
+#Clicks to add new address at order confirmation page
+And /^I add a new address at checkout$/ do
+	query("webview css:'*' class:'iosAppButton ui-link'").first
+	touch("webview css:'*' class:'iosAppButton ui-link'")
+end
+
+#Clicks to add new address at order confirmation page for ph
+And /^I add a new address at checkout for ph$/ do
+	query("webview css:'*' class:'iosAppButton appPositionFix ui-link'").first
+	touch("webview css:'*' class:'iosAppButton appPositionFix ui-link'")
+end
+
+Then /^I select addresses$/ do
+	touch(query("webView css:'*' class:'checkout_address_wrapper'").first)
+	performAction('wait' , 2)
+
+	touch(query("webView css:'*' class:'checkout_address_wrapper'").last)
+	performAction('wait' , 2)
+end
+
+#WEBVIEW ADDRESS FIELDS
+#WEBVIEW ADDRESS FIELDS
+
+Then /^I enter billing first name "([^\"]*)"$/ do |arg1|
+	performAction("set_text", 'webView','input[id=BillingAddressForm_first_name]',arg1)
+end
+Then /^I enter billing last name "([^\"]*)"$/ do |arg2|
+	performAction("set_text", 'webView','input[id=BillingAddressForm_last_name]',arg2)
+end
+
+Then /^I enter billing mobile no (\d+)$/ do |arg1|
+	performAction("set_text", 'webView','input[id=BillingAddressForm_phone]',arg1)
+end
+
+Then /^I enter billing cell no (\d+)$/ do |arg1|
+	performAction("set_text", 'webView','input[id=BillingAddressForm_cell_phone]',arg1)
+end
+
+Then /^I enter billing postcode (\d+)$/ do |arg1|
+	performAction("set_text", 'webView','input[id=BillingAddressForm_postcode]',arg1)
+end
+
+Then /^I enter billing address1 info "([^\"]*)"$/ do |arg2|
+	performAction("set_text", 'webView','input[id=BillingAddressForm_address1]',arg2)
+end
+
+Then /^I enter billing city info "([^\"]*)"$/ do |arg2|
+	performAction("set_text", 'webView','input[id=BillingAddressForm_city]',arg2)
+end
+
+Then /^I enter billing address2 info "([^\"]*)"$/ do |arg3|
+	performAction("set_text", 'webView','input[id=BillingAddressForm_address2]',arg3)
+end
+
+Then /^I enter shipping first name "([^\"]*)"$/ do |arg1|
+	performAction("set_text", 'webView','input[id=ShippingAddressForm_first_name]',arg1)
+end
+
+Then /^I enter shipping city info "([^\"]*)"$/ do |arg2|
+	performAction("set_text", 'webView','input[id=ShippingAddressForm_city_code]',arg2)
+end
+
+Then /^I enter shipping city info "([^\"]*)" for MY$/ do |arg2|
+	performAction("set_text", 'webView','input[id=ShippingAddressForm_city]',arg2)
+end
+
+Then /^I enter shipping cell no (\d+)$/ do |arg1|
+	performAction("set_text", 'webView','input[id=ShippingAddressForm_cell_phone]',arg1)
+end
+
+Then /^I enter shipping postcode (\d+)$/ do |arg1|
+	performAction("set_text", 'webView','input[id=ShippingAddressForm_postcode]',arg1)
+end
+
+Then /^I enter shipping last name "([^\"]*)"$/ do |arg2|
+	performAction("set_text", 'webView','input[id=ShippingAddressForm_last_name]',arg2)
+end
+
+Then /^I enter shipping mobile no (\d+)$/ do |arg1|
+	performAction("set_text", 'webView','input[id=ShippingAddressForm_phone]',arg1)
+end
+
+Then /^I enter shipping address1 info "([^\"]*)"$/ do |arg2|
+	performAction("set_text", 'webView','input[id=ShippingAddressForm_address1]',arg2)
+end
+
+Then /^I enter shipping address2 info "([^\"]*)"$/ do |arg3|
+	performAction("set_text", 'webView','input[id=ShippingAddressForm_address2]',arg3)
+end
+
+#CATALOG METHODS
+#CATALOG METHODS
+
+#Selects all sizes in ascending order
+And /^I test the size selector$/ do
+	#Gets number of sizes which are initially VISIBLE
+	initial = query("textView id:'text'").length
+	last = 1
+	i = 1
+	previous = 0
+	#This algorithm is based on the logic that when the biggest size is selected, the number of 
+	#sizes visible is equal to the number of sizes visible initially.
+	#E.g. 4 sizes are visible initially (but there can actually be more) the size selector selects
+	#every size. When the biggest size is selected, 4 sizes are visible (even though there might)
+	#be more.
+	while last!=initial  do
+		#Touches the next biggest size
+	   	touch("textView id:'text' index:"+i.to_s+"")
+   		last = query("textView id:'text'").length
+   		if(last>=previous)
+   			i=i+1
+   		end
+   		previous = last
+   	end
+end
+
+And /^I check the quantity in the cart to be (\d+)$/ do |quantity|
+	performAction('wait',5)
+	wait_for(:timeout => 30) { element_exists("TextView id:'header_cart_quantity' text:'"+quantity+"'")}
+end
+
+And /^I check that the currency of the products are "([^\"]+)"$/ do |currency|
+	#Saves the currency of all visible products in an array
+	myArray = query("* id:'item_regprice'",:text)
+	for i in 0..myArray.length-1
+		if !myArray[i].start_with?(currency)
+			fail(msg="ERROR. CURRENCY IS "+myArray[i]+"")
+		end
+	end
+end
+
+And /^I browse through the catagories$/ do
+	#query("* id:'header'").length returns the number of categories
+	for i in 0..query("* id:'header'").length-1
+		touch("* id:'header' index:"+i.to_s+"")
+		performAction('wait',5)
+		screenshot(options={:prefix=>nil, :name=>"categories_"+i.to_s+".png"})
+		touch("* id:'header' index:"+i.to_s+"")
+		performAction('wait',5)
+	end
+end
+
+And /^I click on a brand and check that the products are valid with "([^\"]+)" currency$/ do |currency|
+	list_item = rand(7) #returns a random number between 0 and 6
+	#stores brand name which has been clicked on
+	brand_name = query("* id:'label' index:"+list_item.to_s+"",:text)
+	performAction('press_list_item', list_item+1, 0)
+	#waits for products (prices) to appear
+	wait_for(:timeout => 30) { element_exists("* id:'item_regprice'") }
+	#stores currency of all the products
+	currencyArray = query("* id:'item_regprice'",:text)
+	#stores brands of all the products
+	brandArray = query("* id:'item_descr'",:text)
+	for i in 0..currencyArray.length-1
+		#checks currency of all the products
+		if !currencyArray[i].start_with?(currency)
+			fail(msg="ERROR. CURRENCY IS "+currencyArray[i])
+		end
+		#checks brands of all the products if they are equal to brand_name as decalred above
+		if !brandArray[i].start_with?(brand_name[0])
+			fail(msg="ERROR. BRAND NAME IS "+brandArray[i]+ "SUPPOSED TO BE " +brand_name[0])
+		end
+	end
+end
+
+#WAITING METHODS
+#WAITING METHODS
+
+#Waits for element to appear with timeout
+And /^I wait up to (\d+) seconds for the view with id "([^\"]+)" to appear$/ do |timeout, arg1|
+	wait_for(:timeout => timeout.to_i) { element_exists("* id:'"+arg1+"'") }
+	wait_for(:timeout => 120) { element_does_not_exist("LinearLayout id:'loading_bar'") }
+end
+
+#Waits for loading bar to exist then waits for it to not exist
+And /^I wait for loading to be complete$/ do
+	#Waits for loading bar to appear. If loading bar is already gone, exception is thrown but caught. 
+	#The program will still continue
+	begin
+		wait_for(:timeout => 10,:retry_frequency => 0.1) { element_exists("LinearLayout id:'loading_bar'") }
+	rescue SystemCallError
+		res=true
+	end
+	wait_for(:timeout => 120) { element_does_not_exist("LinearLayout id:'loading_bar'") }
+end
+
+#Watis for loading bar to not exist
+Then /^I wait for final loading to be complete$/ do
+	wait_for(:timeout => 120) { element_does_not_exist("LinearLayout id:'loading_bar'") }
+end
+
+#OTHER METHODS
+#OTHER METHODS
+
+#Saves all webview query results into a file
+Then /^I save all query results$/ do
+	myArray=query("webview css:'*'")
+	File.open("query_return.csv", "w") do |f|
+  		myArray.each do |row| f << row end
+	end
+end
+
+#Within 30 seconds, program will check if either top image banner exists or country list exists.
+#If banner exists, test case is passed. If country list exists, it will click on country specified
+#If neither exist, there is a timeout and the program will crash.
+
+And /^I check for country select "([^\"]+)"$/ do |arg1|
+	
+wait_for(:timeout => 120) { element_does_not_exist("arg1")} 
+		
+performAction('click_on_text',arg1)
+			
+end
+
+And /^I take a screenshot with name "([^\"]+)"$/ do |arg1|
+	screenshot(options={:prefix=>nil, :name=>arg1+".png"})
+end
+
+#Email
+
+Then /^I enter email "([^\"]*)" into input field number (\d+)$/ do |text, number|
+	time = Time.new
+	timeString = "#{time.year}#{time.month}#{time.day}#{time.hour}#{time.min}#{time.sec}"
+	domain = "@zalora.com"
+	email = "#{text}#{timeString}#{domain}"
+	performAction('enter_text_into_numbered_field',email,number)
+end
+
+#MI
+
+#VN - ward info
+Then /^I enter billing ward info "([^\"]*)"$/ do |arg3|
+	performAction("set_text", 'webView','input[id=BillingAddressForm_ward]',arg3)
+end
+
+#Extra_DK7
+
+Then /^I check the update "([^\"]*)" text$/ do |text|
+
+performAction('click_on_text',text)
+
+wait_for(:timeout => 120) { element_does_not_exist("LinearLayout id:'loading_bar'") }
+
+ if element_exists("* text:'Your account has been updated with the new information'")
+	touch("* text:'OK'")
+ 
+ elsif element_exists("* text:'บัญชีของคุณได้รับการอัพเดทข้อมูลแล้ว !'")
+        touch("* text:'OK'")
+
+ elsif element_exists("* text:'Thông tin tài khoản đã được cập nhật'")
+        touch("* text:'OK'")
+
+ elsif element_exists("* text:'บัญชีของคุณได้รับการอัพเดทข้อมูลแล้ว !'")
+        touch("* text:'OK'")
+ 
+ else
+        puts ("Error while submission")
+        performAction('go_back')
+ end
+
+end
+
+Given /^In webview I click Order Now$/ do  
+
+     begin
+        if element_exists("webView css:'div.txtCenter.pbl button.btn.cta.js_checkoutBtn'")
+	touch("webView css:'div.txtCenter.pbl button.btn.cta.js_checkoutBtn'")
+        end 
+     end while (element_does_not_exist("LinearLayout id:'loading_bar'"))
+end
+
+Given /^In webview I click Continue$/ do  
+
+      begin
+        if element_exists("webView css:'button'")
+	touch("webView css:'button'")
+        end
+      end while (element_does_not_exist("LinearLayout id:'loading_bar'"))
+end
+
+
+Then /^I click Continue Shopping$/ do  
+
+      begin
+        if element_exists("*text:'Continue Shopping'")
+	performAction('click_on_text', 'Continue Shopping')
+        end
+      end while (element_does_not_exist("LinearLayout id:'loading_bar'"))
+end
+
+
+
+And /^I add an item to the cart for "([^\"]*)"$/ do |language|
+
+
+check = nil
+
+while (check !='no') 
+
+if check == 'yes'
+performAction('go_back')
+performAction('go_back')
+touch("* id:'imgBottom'") 
+end
+
+
+wait_for(:timeout => 30) { element_exists("* id:'item_regprice'") }
+
+product_item = rand(query("* id:'item_name'").length)
+
+performAction('press_list_item', product_item.to_s, 0)
+
+wait_for(:timeout => 30) { element_exists("* id:'estimatedDelivery'") }
+
+
+performAction('scroll_down')
+
+
+file = query("TextView id:'description'", :text)
+last =file[0].to_s
+puts last
+
+   if last =~ /Non-sale item/
+      check = 'yes'
+
+   elsif last =~ /ข้อยกเว้น/
+       check = 'yes'
+
+   else
+      check = 'no'
+   end
+
+end 
+
+
+
+performAction('scroll_up')
+
+	case language
+
+		when "en" 
+			#Touches add to cart button
+			touch("button text:'Add to Cart'")
+			#If "Please select a size to see shipping details" exists, a size needs to be selected
+			if element_exists("TextView text:'Please select a size to see shipping details'")
+				i=1
+				while true do
+					#Touches next biggest size
+					touch("textView id:'text' index:"+i.to_s+"")
+					#Attempts to add to cart
+					touch("button text:'Add to Cart'")
+					performAction('wait',3)
+					#Checks if product was added to cart (Some products are out of stock for
+					#only some sizes)
+					if element_exists("TextView id:'header_cart_quantity' text:'0'")
+						i=i+1
+					else
+						break
+					end
+				end
+			end
+
+		when "id"
+			touch("button text:'Tambah ke Troli'")
+			if element_exists("TextView text:'Pilih ukuran dan lanjut ke transaksi'")
+				i=1
+				while true do
+					touch("textView id:'text' index:"+i.to_s+"")
+					touch("button text:'Tambah ke Troli'")
+					performAction('wait',3)
+					if element_exists("TextView id:'header_cart_quantity' text:'0'")
+						i=i+1
+					else
+						break
+					end
+				end
+			end
+
+		when "vn"
+			touch("button text:'Thêm vào giỏ hàng'")
+			if element_exists("TextView text:'Xin lựa chọn size để xem thông tin vận chuyển'")
+				i=1
+				while true do
+					touch("textView id:'text' index:"+i.to_s+"")
+					touch("button text:'Thêm vào giỏ hàng'")
+					performAction('wait',3)
+					if element_exists("TextView id:'header_cart_quantity' text:'0'")
+						i=i+1
+					else
+						break
+					end
+				end
+			end
+
+		when "th"
+			touch("button text:'ใส่ในรถเข็น'")
+			if element_exists("TextView text:'โปรดคลิกเลือกไซส์ เพื่อดูรายละเอียดการจัดส่งสินค้า'")
+				i=1
+				while true do
+					touch("textView id:'text' index:"+i.to_s+"")
+					touch("button text:'ใส่ในรถเข็น'")
+					performAction('wait',3)
+					if element_exists("TextView id:'header_cart_quantity' text:'0'")
+						i=i+1
+					else
+						break
+					end
+				end
+			end
+	end
+end
+
